@@ -1,0 +1,22 @@
+{
+  "name": "svg-logo-maker",
+  "version": "1.0.0",
+  "description": "logo maker",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "SVG-Logo-Maker"
+  },
+  "author": "ramen dosanjh",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^9.2.11",
+    "svg.js": "^2.7.1"
+  }
+}
