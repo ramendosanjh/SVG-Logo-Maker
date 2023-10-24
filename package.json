@@ -11,12 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "SVG-Logo-Maker"
+    "url": "https://github.com/Golnazramendosanjh8/SVG-Logo-Maker.git"
   },
-  "author": "ramen dosanjh",
+  "author": "Ramen Dosanjh",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramendosanjh/SVG-Logo-Maker/issues"
+  },
+  "homepage": "https://github.com/Golnaz8/SVG-Logo-Makerker#readme",
   "dependencies": {
-    "inquirer": "^9.2.11",
-    "svg.js": "^2.7.1"
+    "inquirer": "^8.2.4"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }

@@ -1,9 +1,6 @@
-// Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const { Circle, Triangle, Square } = require("./lib/shapes");
-
-const shapeChoices = ["Circle", "Triangle", "Square"];
+const { Circle, Triangle, Square } = require('./lib/shapes');
 
 // Create an array of questions for user input
 const promptUserForLogoDetails = async () => {
@@ -11,23 +8,23 @@ const promptUserForLogoDetails = async () => {
     {
       type: "input",
       name: "text",
-      message: "Enter 3 letters for the text:",
+      message: "Enter up to three characters for the text:",
     },
     {
       type: "input",
       name: "textColor",
-      message: "Enter colour for text:",
+      message: "Enter the text color (color keyword or hexadecimal number): #ffffffff ",
     },
     {
       type: "list",
       name: "shape",
       message: "Select a shape:",
-      choices: ['circle', 'triangle', 'square'],
+      choices: ["Circle", "Triangle", "Square"],
     },
     {
       type: "input",
       name: "shapeColor",
-      message: "Enter color for shape:",
+      message: "Enter the shape color (color keyword or hexadecimal number):",
     },
   ]);
 
@@ -37,19 +34,24 @@ const promptUserForLogoDetails = async () => {
 const generateSVGCode = (shape, text, textColor, shapeColor) => {
   let svgCode;
 
+  // Create an instance of the selected shape class based on user input
+  let shapeInstance;
   switch (shape) {
     case "Circle":
-      svgCode = new Circle(shapeColor).generateSVG(text, textColor);
+      shapeInstance = new Circle(shapeColor);
       break;
     case "Triangle":
-      svgCode = new Triangle(shapeColor).generateSVG(text, textColor);
+      shapeInstance = new Triangle(shapeColor);
       break;
     case "Square":
-      svgCode = new Square(shapeColor).generateSVG(text, textColor);
+      shapeInstance = new Square(shapeColor);
       break;
     default:
       throw new Error("Invalid shape selected.");
   }
+
+  // Generate the SVG code for the shape with the specified text and text color
+  svgCode = shapeInstance.generateSVG(text, textColor);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
@@ -64,8 +66,7 @@ const saveSVGToFile = (svg) => {
 
 const main = async () => {
   try {
-    const { text, textColor, shape, shapeColor } =
-      await promptUserForLogoDetails();
+    const { text, textColor, shape, shapeColor } = await promptUserForLogoDetails();
     const svgCode = generateSVGCode(shape, text, textColor, shapeColor);
     saveSVGToFile(svgCode);
   } catch (error) {
